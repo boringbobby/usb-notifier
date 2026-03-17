@@ -66,10 +66,8 @@ def listener():
                 else:
                     continue
 
-                info = extract_info(props)
-                print(format_event(action, info))
+                info = extract_info(props) 
                 notify(action, info)
-                print()
 
 
 # Sends notification with notify-send
