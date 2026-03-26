@@ -2,18 +2,13 @@ use notify_rust::Notification;
 use std::collections::HashMap;
 use std::os::unix::io::AsRawFd;
 
-/// Information about a USB device.
+/// Struct for information about a USB device.
 struct DeviceInfo {
     vendor: String,
     model: String,
 }
 
 /// Extract device info from a udev device, walking up to the parent if needed.
-///
-/// Uses a fallback chain for each field so we get the best name available:
-///   1. ID_*_FROM_DATABASE  (human-readable, from usb.ids)
-///   2. sysattr             (reported by the device itself)
-///   3. ID_*                (encoded/raw form)
 fn extract_info(device: &udev::Device) -> DeviceInfo {
     DeviceInfo {
         vendor: get_property_with_fallback(device, &[
@@ -58,9 +53,6 @@ fn get_property_with_fallback(device: &udev::Device, sources: &[Property]) -> Op
 
 
 /// Check if a device is a top-level USB device (not an interface).
-///
-/// USB interfaces have a colon in their sysname (e.g. "1-4:1.0"),
-/// while actual devices don't (e.g. "1-4").
 fn is_usb_device(device: &udev::Device) -> bool {
     device
         .property_value("DEVTYPE")
