@@ -11,7 +11,7 @@ cargo build --release
 ```
 
 ## Autostart
-*Note*: First, add usb-notifier to PATH.
+**Note**: Add usb-notifier to PATH before moving on.
 
 Hyprland:
 ```
