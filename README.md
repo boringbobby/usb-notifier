@@ -4,7 +4,7 @@ A lightweight USB device monitor for Linux that sends desktop notifications when
 
 ## Build
 
-Requires Rust and 'pkg-config' / 'pkgconf'.
+Requires Rust and `pkg-config` / `pkgconf`.
 
 ```bash
 cargo build --release
